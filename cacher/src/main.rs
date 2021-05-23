@@ -29,14 +29,6 @@ where
                     v
             }
         }
-        //match self.value {
-            //Some(v) => v,
-            //None => {
-                //let v = (self.calculation)(arg);
-                //self.value = Some(v);
-                //v
-            //}
-        //}
     }
 }
 
