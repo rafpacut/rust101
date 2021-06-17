@@ -8,7 +8,7 @@ use::thread_pool::ThreadPool;
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
 
-    let pool = match ThreadPool::new(0) {
+    let pool = match ThreadPool::new(2) {
         Ok(pool) => pool,
         Err(err) => panic!("{:?}",err)
     };

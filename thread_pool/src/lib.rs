@@ -1,7 +1,11 @@
 mod PoolCreationErrorModule;
+mod Worker;
+//use crate::Worker::Worker;
 use crate::PoolCreationErrorModule::PoolCreationError;
 
-pub struct ThreadPool;
+pub struct ThreadPool {
+    workers: Vec<Worker::Worker>,
+}
 
 
 impl ThreadPool {
@@ -16,11 +20,16 @@ impl ThreadPool {
     //TODO
     //create another 'new'
     pub fn new(size: usize) -> Result<ThreadPool, PoolCreationError> {
-        if size > 0 {
-            Ok(ThreadPool)
+        if size <= 0 {
+            Err(PoolCreationError)
         }
         else {
-            Err(PoolCreationError)
+            let mut workers = Vec::with_capacity(size);
+            for id in 0..size {
+                workers.push(Worker::Worker::new( id ));
+            }
+
+            Ok( ThreadPool {workers} )
         }
     }
 
